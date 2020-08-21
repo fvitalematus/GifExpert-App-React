@@ -11,7 +11,7 @@ export const GifGrid = ({ category }) => {
 
     const getGifs = async () => {
 
-        const url = 'https://api.giphy.com/v1/gifs/search?q=Rick+and+Morty&limit=10&api_key=AJ3MSgPLFCWxTWAGuIxiOQcCqRzBDQQL'
+        const url = `https://api.giphy.com/v1/gifs/search?q=${ encodeURI( category ) }&limit=10&api_key=AJ3MSgPLFCWxTWAGuIxiOQcCqRzBDQQL`;
         const resp = await fetch(url);
         const { data } = await resp.json();
 
