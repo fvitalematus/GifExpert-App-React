@@ -1,8 +1,8 @@
 // import React from 'react' --> NO se utiliza a menos que se regrese un archivo JSX
+import { useState, useEffect } from "react"
+import { getGifs } from "../helpers/getGifs";
 
-import { useState } from "react"
-
-export const useFetchGifs = () => {
+export const useFetchGifs = (category) => {
 
 
     const [state, setState] = useState({
@@ -10,12 +10,23 @@ export const useFetchGifs = () => {
         loading: true
     });
 
-    setTimeout(() => {
-        setState({
-            data: [1, 2, 3, 4, , 5, 6, 7],
-            loading: false
-        })
-    }, 3000);
+    useEffect(() => {
+
+        getGifs(category)
+            .then(imgs => {
+
+                setTimeout(() => {
+
+                    setState({
+                        data: imgs,
+                        loading: false
+                    });
+
+                }, 3000)
+            })
+
+    }, [category])
+
 
     return state; // {data[], loading: true };
 }
