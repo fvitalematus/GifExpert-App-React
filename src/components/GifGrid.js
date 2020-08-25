@@ -4,8 +4,7 @@ import { GifGridItem } from './GifGridItem';
 
 export const GifGrid = ({ category }) => {
 
-    const { data, loading } = useFetchGifs(category);
-
+    const { data:images, loading } = useFetchGifs(category);
 
     return (
         <>
@@ -15,7 +14,7 @@ export const GifGrid = ({ category }) => {
 
             <div className="card-grid">
                 {
-                    data.map(img => (
+                    images.map(img => (
                         <GifGridItem
                             key={img.id}
                             {...img}
